@@ -10,10 +10,10 @@ export function ProfileHeader() {
 
   return (
     <>
-      <div className="flex justify-between py-5 px-7 text-lg font-medium uppercase">
+      <div className="flex justify-between py-5 px-7 text-lg font-medium ">
         <div className="">
-          <div className="color-b">cv ÖNİZLEME</div>
-          <div className="flex text-xs font-medium">
+          <h5 className="color-b uppercase ">cv ÖNİZLEME</h5>
+          <div className="flex text-xs font-semibold mt-3">
             <div className="flex">
               <span className="w-4 mr-1">
                 <SlCalender size="15" />
