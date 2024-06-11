@@ -13,5 +13,6 @@ export const TMP_SEMINAR = [
       key: "date",
       title_tr: "Tarih",
       value: null,
+      format: "MM/YYYY"
     },
 ];

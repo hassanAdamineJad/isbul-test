@@ -10,6 +10,7 @@ export const TMP_PERSONAL_INFO = [
       key: "birth_date",
       title_tr: "Doğum Tarihi",
       value: null,
+      format: "DD.MM.YYYY"
     },
     {
       key: "gender",
@@ -32,12 +33,12 @@ export const TMP_PERSONAL_INFO = [
       value: null,
     },
     {
-      key: "",
+      key: "disability_detail",
       title_tr: "Engel Durumu",
       value: null,
     },
     {
-      key: "",
+      key: "disability_type",
       title_tr: "Engel Kategorisi",
       value: null,
     },
@@ -51,11 +52,7 @@ export const TMP_PERSONAL_INFO = [
       title_tr: "SRC Belgeleri",
       value: null,
     },
-    {
-      key: "",
-      title_tr: "Askerlik Durumu",
-      value: null,
-    },
+   
     {
       key: "",
       title_tr: "Engel Yüzdesi",

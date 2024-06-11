@@ -33,10 +33,12 @@ export const TMP_EXPERIENCES = [
       key: "start_date",
       title_tr: "Giriş Tarihi",
       value: null,
+     
     },{
       key: "end_date",
       title_tr: "Ayrılış Tarihi",
       value: null,
+       
     },{
       key: "work_info",
       title_tr: "İş Tanımı",

@@ -1,19 +1,12 @@
-import { CardInfo } from "./card";
+import { ICv } from "../../types/cv";
+import { ICvLiveInfo } from "../../types/liveInfo";
+import { IUser } from "../../types/users";
+import { CardInfo } from "../card";
 
 interface SideBarProps {
-  user: { [key: string]: string };
-  cv: {
-    [key: string]: string;
-  };
-  liveInfo: {
-    address: string;
-    city: {
-      [key: string]: string;
-    };
-    country: {
-      [key: string]: string;
-    };
-  };
+  user: IUser;
+  cv: ICv;
+  liveInfo: ICvLiveInfo;
 }
 
 export function SideBar({ user, cv, liveInfo }: SideBarProps) {

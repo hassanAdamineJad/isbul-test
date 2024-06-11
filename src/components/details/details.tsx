@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { DETAILS_CONTENT } from "../constants/details";
-import { prepareDataWithTMP } from "./helpers/prepareData";
 import {
   TMP_EDUCATION,
   TMP_EXPERIENCES,
@@ -8,31 +5,27 @@ import {
   TMP_PERSONAL_INFO,
   TMP_REF,
   TMP_SEMINAR,
-  TMP_WORK,
-} from "../constants/tmp";
-import { Educations } from "./education";
+} from "../../constants/tmp";
+import { GenerateRows } from "./generateRows";
+import { GenerateRatingRows } from "./generateRatingRows";
+import { IReview } from "../../types/reviewCv";
+import { TMP_PRIZE } from "../../constants/tmp/TMP_PRIZES";
 
-interface DetailsProps {}
+interface DetailsProps {
+  data: IReview;
+}
 
-export function Details({ data }: any) {
-  console.log({ data });
+export function Details({ data }: DetailsProps) {
   const {
     user,
     cv_languages,
     cv_job_experiences,
-    cv_exams,
     cv_educations,
-    cv_certificates,
     cv,
-    cv_job_preferences,
-    cv_live_info,
     cv_references,
     cv_seminars,
+    cv_to_disability,
   } = data;
-  useEffect(() => {
-    console.log(prepareDataWithTMP(cv_educations[0], TMP_EDUCATION));
-    console.log(prepareDataWithTMP(cv_job_experiences[0], TMP_EXPERIENCES));
-  }, [data]);
 
   return (
     <div className="w-full box-shadow pb-36 my-5 sm:px-7 sm:bg-white  sm:my-0 sm:rounded-r-lg">
@@ -47,18 +40,67 @@ export function Details({ data }: any) {
       <div className="border-b p-3 mb-3 sm:mb-0 bg-white rounded-lg sm:rounded-none sm:p-0 sm:bg-transparent">
         <h2 className="color-b text-4xl hidden sm:block font-semibold">
           {user.name} {user.surname}
-          <span className="text-xl text-black px-3">(60)</span>
+          <span className="text-xl text-black px-3">
+            (
+            {new Date().getFullYear() -
+              new Date(user?.birth_date).getFullYear()}
+            )
+          </span>
         </h2>
         <div className="text-xs sm:hidden font-semibold">
           Kişisel Ve Mesleki Bilgiler
         </div>
         <div className="hidden sm:block">{cv.title}</div>
-        <div className="mt-2 mb-4 text-xs sm:text-sm">fff</div>
+        <div className="mt-2 mb-4 text-xs sm:text-sm">{cv?.summary}</div>
       </div>
 
-      {/* <Educations data={cv_educations} /> */}
+      <GenerateRows
+        data={[{ ...cv, ...user, ...cv_to_disability }]}
+        title="Kişisel Bilgiler"
+        tmp={TMP_PERSONAL_INFO}
+      />
 
-      {DETAILS_CONTENT.map((item, key) => {
+      <GenerateRows
+        data={cv_job_experiences}
+        title="Çalışma Bilgileri"
+        tmp={TMP_EXPERIENCES}
+      />
+
+      <GenerateRows
+        data={cv_job_experiences}
+        title="İş Deneyimi"
+        tmp={TMP_EXPERIENCES}
+      />
+      <GenerateRows
+        data={cv_educations}
+        title="Eğitim Bilgileri"
+        tmp={TMP_EDUCATION}
+      />
+
+      <GenerateRatingRows
+        data={cv_languages}
+        title="Yabancı Dil"
+        tmp={TMP_LANGS}
+      />
+
+      <GenerateRows data={cv_references} title="Referanslar" tmp={TMP_REF} />
+
+      <GenerateRows
+        data={cv_seminars}
+        title="Kurs Ve Seminerler"
+        tmp={TMP_SEMINAR}
+      />
+
+      {cv.prize && (
+        <GenerateRows
+          data={[]}
+          tmp={TMP_PRIZE}
+          title="Başarı Ödül Ve Burslar"
+          content={cv.prize}
+        />
+      )}
+
+      {/* {DETAILS_CONTENT.map((item, key) => {
         const isRate = item.meta?.isRate;
         const order = item.meta?.order || false;
         return (
@@ -152,7 +194,7 @@ export function Details({ data }: any) {
             ))}
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }

@@ -1,6 +1,7 @@
+import { ITmp } from "../../types/ITmp";
 
 
-export const TMP_EDUCATION = [
+export const TMP_EDUCATION :ITmp[] = [
     {
       key: "country_id",
       title_tr: "Eğitim Seviyesi",
@@ -39,6 +40,7 @@ export const TMP_EDUCATION = [
       key: "graduation_year",
       title_tr: "Mezuniyet Tarihi",
       value: null,
+      
     },{
       key: "note_system",
       title_tr: "Not Sistemi",
